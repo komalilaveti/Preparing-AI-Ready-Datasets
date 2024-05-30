@@ -1,0 +1,466 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    <script src="{% static 'js/bootstrap.min.js'%}"></script>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}" />
+    <!-- <script src="{% static 'js/bootstrap.bundle.js'%}"></script> -->
+    
+    <script>
+        function show1() {
+            document.getElementById('div1').style.display = 'none';
+
+        }
+        function show2() {
+            document.getElementById('div1').style.display = 'block';
+            document.getElementById('div1').style.visibility = 'visible';
+        }
+        
+    </script>
+    <style>
+        .hide {
+            display: none;
+        }
+
+        /* .card {
+            width: 60vw;
+            align-items: center;
+            
+            margin-top: 15vw;
+            box-shadow: rgba(5, 5, 240, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px;
+        } */
+        .card {
+        background: #191c29;
+        width: 60vw;
+        /*   height: var(--card-height); */
+        /*   padding: 3px; */
+        margin-top: 15vw;
+        position: relative;
+        /* position: unset; */
+        border-radius: 6px;
+        justify-content: center;
+        align-items: center;
+        /* text-align: center; */
+        display: flex;
+        font-size: 1.5em;
+        color: rgb(88 199 250 / 0%);    
+        cursor: pointer;
+        font-family: cursive;
+        }
+        @property --rotate {
+        syntax: "<angle>";
+        initial-value: 132deg;
+        inherits: false;
+        }
+
+        :root {
+        --card-height: 65vh;
+        --card-width: calc(var(--card-height) / 1.5);
+        }
+
+        .card::before {
+        content: "";
+        width: 102%;
+        height: 102.5%;
+        border-radius: 8px;
+        background-image: linear-gradient(
+            var(--rotate)
+            , #5ddcff, #3c67e3 43%, #4e00c2);
+            position: absolute;
+            z-index: -1;
+            top: -1%;
+            left: -1%;
+            animation: spin 2.5s linear infinite;
+        }
+
+        .card::after {
+        position: absolute;
+        content: "";
+        top: calc(var(--card-height) / 6);
+        left: 0;
+        right: 0;
+        z-index: -1;
+        height: 100%;
+        width: 100%;
+        margin: 0 auto;
+        transform: scale(0.8);
+        filter: blur(calc(var(--card-height) / 6));
+        background-image: linear-gradient(
+            var(--rotate)
+            , #5ddcff, #3c67e3 43%, #4e00c2);
+            opacity: 1;
+        transition: opacity .5s;
+        animation: spin 2.5s linear infinite;
+        }
+
+        @keyframes spin {
+        0% {
+            --rotate: 0deg;
+        }
+        100% {
+            --rotate: 360deg;
+        }
+        }
+
+        .upload_btn {
+            width: 150px;
+            border-radius: 10px;
+            height: 50px;
+            background-color: black;
+            color: white;
+            border: 2px solid white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        input[type="text"] {
+            border-radius: 5px;
+            width: 150px;
+            border: none;
+            box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+        }
+
+        td {
+            color:white;
+            font-size: medium;
+            text-transform: uppercase;
+        }
+
+        table {
+            line-height: 40px;
+        }
+
+        .text {
+            color:white;
+            text-transform: uppercase;
+            text-align: center;
+            padding-top: 30px;
+            font-weight: 600;
+            font-size: 25px;
+        }
+
+        .buttonn {
+            margin-left: 43vw;
+            margin-top: 5vw;
+            text-align: center;
+            width: 150px;
+            border-radius: 10px;
+            height: 50px;
+            background-color: black;
+            color: white;
+            border: 2px solid white;
+            position: relative;
+            overflow: hidden;
+        }
+        .fbuttonn
+        {
+            text-align: center;
+            width:fit-content;
+            border-radius: 10px;
+            height: 50px;
+            background-color: black;
+            color: white;
+            border: 2px solid white;
+            position: relative;
+            cursor: pointer;
+             overflow: hidden; 
+        }
+        #votein{
+            visibility: hidden;
+        }
+
+        #myBtn {
+        display: none;
+        position: fixed;
+        border-radius: 100%;
+        bottom: 16px;
+        right: 26px;
+        z-index: 99;
+        font-size: 18px;
+        outline: none;
+        background: rgb(0, 0, 0);
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        cursor: pointer;
+        padding: 1% 1% 1% 1%;
+        border: none;
+        }
+
+        #myBtn:hover {
+        background: rgba(0, 0, 0, 0.9);
+        color: white;
+        -webkit-transition: all 0.3s linear;
+        -moz-transition: all 0.3s ease;
+        -ms-transition: all 0.3s ease;
+        -o-transition: all 0.3s ease;
+        transition: all 0.3s ease;
+
+        }
+    </style>
+</head>
+
+<body style="background-color:#212534;">
+
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-chevron-up"></i></button>
+        <script>
+            var mybutton = document.getElementById("myBtn");
+  
+                  window.onscroll = function() {scrollFunction()};
+  
+                  function scrollFunction() {
+                  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+                      mybutton.style.display = "block";
+                  } else {
+                      mybutton.style.display = "none";
+                  }
+                  }
+  
+                  function topFunction() {
+                  document.body.scrollTop = 0;
+                  document.documentElement.scrollTop = 0;
+                  }
+          </script>
+          <div id="imagePreview"></div>
+          <script>
+		function fileValidation() {
+			var fileInput =
+				document.getElementById('file');
+			
+			var filePath = fileInput.value;
+		        if(document.getElementById('file').files[0].size == 0){
+				alert('dfjdfkw');
+				return false;
+				} 
+			var allowedExtensions =
+					/(\.jpg|\.jpeg|\.png|\.txt|\.pdf)$/i;
+			
+			if (!allowedExtensions.exec(filePath)) {
+				alert('Invalid file type');
+				fileInput.value = '';
+				return false;
+			}
+			else
+			{
+                return true;
+			
+				/* // Image preview
+				if (fileInput.files && fileInput.files[0]) {
+					var reader = new FileReader();
+					reader.onload = function(e) {
+						document.getElementById(
+							'imagePreview').innerHTML =
+							'<img src="' + e.target.result
+							+ '"/>';
+					};
+					
+					reader.readAsDataURL(fileInput.files[0]);
+				} */
+			}
+		}
+	</script>
+
+
+    <nav id="navbar" style="margin-top: 5vw;">
+        <input type="checkbox" id="check">
+        <label for="check">
+            <i class="fa fa-bars" id="btn"></i>
+            <i class="fa fa-times" id="cancel"></i>
+        </label>
+        <ul id="menu">
+            <li><a href="/#h" class="link-light">Home</a></li>
+            <li><a href="/#a" class="link-light">About</a></li>
+            <li><a href="/#i" class="link-light">Instructions</a></li>
+            <li><a href="/#c" class="link-light">Contact</a></li>
+            <li>
+                <div class="dropdown">
+                    <button class="dropbtn"
+                        style="font-family: 'Poppins',sans-serif;letter-spacing: 3px;">UPLOAD</button>
+                    <div class="dropdown-content">
+                        <a href="index.html">TEXT</a>
+                        <a href="index.html">PDF</a>
+                        <a href="index.htmls">IMAGE</a>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </nav>
+    <form action="preprocess" method="post" enctype="multipart/form-data">
+        {%csrf_token%}
+        <div class="d-flex justify-content-center mb-3">
+            <div class="card">
+                <p class="text">Upload the file</p>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td><input type="file" class="fbuttonn" id="file" oninput="return fileValidation()"  name="uploaded_file" accept=".pdf,.txt,.jpg,.jpeg,.png,"></td>
+                        </tr>
+                        <tr>
+                            <td><br>Delimiter:<br><input type="text" name="sep" oninput="location.href='#pre';"><br><br></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mb-3" id="pre">
+            <div class="card" >
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td><p class="text">PREPROCESSING</p></td>
+                        </tr>
+                    
+                        <tr>
+                            <td><input type="checkbox" value="punctuation" id="1" name="preprocessingg" > <label for="punctu"> punctuation removal</label><br></input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="whitespace" id="2" name="preprocessingg" > <label for="whitespace"> whitespace removal</label><br></input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="roman" id="3" name="preprocessingg" > <label for="roman"> roman removal</label><br></input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="redun" id="4" name="preprocessingg" > <label for="redun"> redundent removal</label><br></input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="num" id="5" name="preprocessingg" > <label for="num"> num removal</label><br></input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="stopword" id="6" name="preprocessingg" > <label for="stopword"> stopword removal</label><br></input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="lemma" id="7" name="preprocessingg" "> <label for="lemma"> lemmatization</label><br></input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox" value="stem" id="8" name="preprocessingg" oninput="location.href='#wem';"> <label for="stem"> stemming</label><br></input></td>
+                        </tr>
+                         
+                    </table>
+                </div>
+            </div>
+            </div>
+        <div class="d-flex justify-content-center mb-3" id="wem">
+            <div class="card" >
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td><p class="text">WORD-EMBEDDING</p></td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" value="TFIDF" name="word_embedding" oninput="location.href='#cal';">  TFIDF</input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" value="COUNTVECT" name="word_embedding" oninput="location.href='#cal';">  COUNT</input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" value="WORDTOVECCOS" name="word_embedding" oninput="location.href='#cal';">  W2V_COS</input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" value="WORDTOVECGOG" name="word_embedding" oninput="location.href='#cal';">  W2V_GOG</input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" value="FAST-TEXT" name="word_embedding" oninput="location.href='#cal';">  FAST-TEXT</input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" value="GLOVE" name="word_embedding" oninput="location.href='#cal';">  GLOVE</input></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mb-3" id="cal">
+            <div class="card">
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <td><p class="text">CLASSIFICATION</p></td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" value="RANDOM_CL" name="classifier"
+                                    onclick="show1(),location.href='#sub';">  RANDOM_fOREST</input></td>
+                        <tr>
+                            <td><input type="radio" value="DECISION_CL" name="classifier"
+                                    onclick="show1(),location.href='#sub';">  DECISION_TREE</input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" value="KNN_CL" name="classifier" onclick="show1(),location.href='#sub';">  KNN</input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" value="LOGISTIC_REGRESSION_CL" name="classifier"
+                                    onclick="show1(),location.href='#sub';">  LOGISTIC_REGRESSION</input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" value="SVC_CL" name="classifier" onclick="show1(),location.href='#sub';">  SVC</input></td>
+                        </tr>
+                    </tr>
+                        <td><input type="radio" value="simple_nn" name="classifier"
+                                    onclick="show1(),location.href='#sub';">  simple neural network</input></td>
+                        <tr>
+                        <tr>
+                            <td><input type="radio" value="STACKING_CL" name="classifier"
+                                    onclick="show1(),location.href='#sub'">  STACKING</input></td>
+                        </tr>
+                        <tr>
+                            <td><input type="radio" value="VOTING_CL" name="classifier"
+                                    onclick="show2(),location.href='#votin';">  VOTING</input></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center mb-3" id="votin">
+            <div class="card">
+                <div class="card-body"  id="vote">
+                    <div id="div1" class="hide">
+                        <table>
+                            <tr>
+                            <td><p class="text">VOTING TYPES</p></td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="votingin" value="V_RANDOM_CL" onclick="location.href='#sub';">random forest</input></td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="votingin" value="V_DECISION_CL" onclick="location.href='#sub';">decision tree</input></td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="votingin" value="V_KNN_CL" onclick="location.href='#sub';">knn</input></td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="votingin" value="V_SVC_CL" onclick="location.href='#sub';">svc</input></td>
+                            </tr>
+                            <tr>
+                                <td><input type="radio" name="votingin" value="V_all" onclick="location.href='#sub';">all</input></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="submit" class="buttonn" value="submit" id="sub"><br><br>
+    </form>
+
+
+    <div class="bottom">
+        <div class="left">
+            <a href="https://www.facebook.com/zuck" target="_blank"><img src="../static/images/Facebook.svg" alt="logo"></a>
+            <a href="https://www.linkedin.com/in/surya-prakash-kalyanam-946163225" target="_blank"><img src="../static/images/Vector-2.svg" alt="logo"></a>
+            <a href="https://instagram.com/gmrit_bisikets?igshid=YmMyMTA2M2Y=" target="_blank"><img src="../static/images/Vector-3.svg" alt="logo"></a>
+            <a href="https://twitter.com/NIKHILKUMAR_02" target="_blank"><img src="../static/images/Twitter.svg" alt="logo"></a>
+        </div>
+        <div class="mid">
+            <p>TEAM DATA WARRIORS</p>
+        </div>
+        <div class="right">
+            <a href="tel:+917093364885" target="_blank"><img src="../static/images/Vector 1306.svg" alt="logo"></a>
+            <a href="whatsapp:contact=917093364885@s.whatsapp.com&message="I'd like to chat with you" target="_blank"><img src="../static/images/Vector-1.svg" alt="logo"></a>
+            <a href="https://goo.gl/maps/WWLgJoHH888NeEGB6" target="_blank"><img src="../static/images/Vector.svg" alt="logo"></a>
+        </div>
+    </div>
+</body>
+
+</html>
